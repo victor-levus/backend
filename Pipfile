@@ -1,0 +1,29 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+django = "*"
+mysqlclient = "*"
+djangorestframework = "*"
+drf-nested-routers = "*"
+django-filter = "*"
+djoser = "*"
+django-cors-headers = "*"
+pillow = "*"
+whitenoise = "*"
+gunicorn = "*"
+waitress = "*"
+dj-database-url = "*"
+django-debug-toolbar = "*"
+tk-tools = "*"
+psycopg2 = "*"
+psycopg = "*"
+sqlalchemy = "*"
+pandas = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.12.4"
