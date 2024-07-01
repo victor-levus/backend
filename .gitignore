@@ -1,5 +1,6 @@
 /media/
 /static/
+/.venv/
 
 *.env
 bin/
