@@ -24,11 +24,11 @@ admin.site.index_title = 'Admin'
 
 urlpatterns = [
     path('', include('core.urls')),
-    path('admin/', admin.site.urls),
-    path('betcodes/', include('betcodes.urls')),
+    path('api/admin/', admin.site.urls),
+    path('api/betcodes/', include('betcodes.urls')),
     path('api/estores/', include('estore.urls')),
-    path('auth/', include('djoser.urls')),
-    path('auth/', include('djoser.urls.jwt')),
+    path('api/auth/', include('djoser.urls')),
+    path('api/auth/', include('djoser.urls.jwt')),
     path('__debug__/', include('debug_toolbar.urls')),
 ]
 

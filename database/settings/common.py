@@ -62,15 +62,7 @@ INTERNAL_IPS = [
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
-    'http://localhost:3000',
-    'http://localhost:5173',
     "http://127.0.0.1:3000",
-    "http://192.168.0.153:3000",
-    "http://192.168.1.175:5173",
-    "https://levus-training.herokuapp.com",
-    "http://levus-training.herokuapp.com",
-    "https://learning-levus.herokuapp.com",
-    "https://betcodes.herokuapp.com",
     "https://betcodes.space",
     "http://betcodes.space"
 ]
@@ -150,18 +142,16 @@ REST_FRAMEWORK = {
 
 SIMPLE_JWT = {
     'AUTH_HEADER_TYPES': ('JWT',),
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=30),
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+    'ACCESS_TOKEN_LIFETIME': timedelta(days=2),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=4),
     'BLACKLIST_AFTER_ROTATION': False,
-    #    "TOKEN_OBTAIN_SERIALIZER": "rest_framework_simplejwt.serializers.MyTokenObtainPairSerializer",
 }
 
 DJOSER = {
     'SERIALIZERS': {
         'user_create': 'core.serializers.UserCreateSerializer',
         'current_user': 'core.serializers.UserSerializer',
-        # 'token': 'core.serializers.TokenSerializer',
-        # 'token_create': 'core.serializers.TokenCreateSerializer',
+		'user': 'core.serializers.UserSerializer',
     },
 }
 

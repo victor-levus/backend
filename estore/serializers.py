@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from estore.models import Product, Category
+from estore.models import Category, Product
 
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:

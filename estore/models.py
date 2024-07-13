@@ -16,8 +16,8 @@ class Category(models.Model):
 class Product(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField()
-    sku = models.CharField(null=True, blank=True)
-    price = models.DecimalField(max_digits=10, decimal_places=2)
+    sku = models.CharField(max_length=255, null=True, blank=True)
+    price = models.FloatField(max_length=10)
     image = models.ImageField(upload_to='estore/files')
     category = models.ForeignKey(Category, on_delete=models.DO_NOTHING, null=True)
     createdAt = models.DateTimeField(auto_now_add=True)

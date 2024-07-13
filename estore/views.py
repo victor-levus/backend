@@ -1,8 +1,8 @@
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.permissions import SAFE_METHODS, AllowAny, IsAdminUser, IsAuthenticated
 
-from estore.serializers import ProductSerializer, CategorySerializer
-from .models import Product, Category
+from estore.serializers import  CategorySerializer, ProductSerializer
+from .models import Category, Product
 
 
 
