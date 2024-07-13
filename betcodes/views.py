@@ -13,10 +13,10 @@ class BetCodeViewSet(ModelViewSet):
     queryset = BetCode.objects.all()
     serializer_class = BetCodeSerializer
 
-    # def get_permissions(self):
-    #     if self.request.method in SAFE_METHODS:
-    #         return [AllowAny()]
-    #     return [IsAdminUser()]
+    def get_permissions(self):
+        if self.request.method in SAFE_METHODS:
+            return [AllowAny()]
+        return [IsAdminUser()]
 
 
 class BookCodeInfoViewSet(ModelViewSet):
