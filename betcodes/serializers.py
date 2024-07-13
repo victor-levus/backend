@@ -19,34 +19,21 @@ class BookCodeInfoSerializer(serializers.ModelSerializer):
 
 class CommentSerializer(serializers.ModelSerializer):
     user = serializers.CharField(read_only=True)
+    replies = serializers.SerializerMethodField()
 
     class Meta:
         model = Comment
-        fields = ['id', 'name', 'user', 'description', 'placed_at']
+        fields = ['id', 'post', 'user', 'description', 'parent', 'replies', 'created_at']
 
     def create(self, validated_data):
         post_id = self.context['post_id']
         user_id = self.context['user_id']
         return Comment.objects.create(post_id=post_id, user_id=user_id.id, **validated_data)
-
-
-class LikeSerializer(serializers.ModelSerializer):
-    user = serializers.CharField(read_only=True)
-
-#     class Meta:
-#         model = Likes
-#         fields = ['id', 'user', 'likes', 'placed_at']
-
-#     def create(self, validated_data):
-#         post_id = self.context['post_id']
-#         user_id = self.context['user_id']
-#         verify_like = Likes.objects.filter(user_id=user_id.id)
-
-    # if (verify_like):
-    #     return
-    # else:
-    #     return Likes.objects.create(post_id=post_id, user_id=user_id.id, **validated_data)
-
+    
+    def get_replies(self, obj):
+        if obj.replies.exists():
+            return CommentSerializer(obj.replies.all(), many=True).data
+        return None
 
 class PostSerializer(serializers.ModelSerializer):
     comments = CommentSerializer(many=True, read_only=True)
@@ -66,3 +53,22 @@ class FootballClubSerializer(serializers.ModelSerializer):
         model = FootballClub
         fields = ['club_name', 'country',
                   'continent', 'domestic_league', 'logo']
+
+
+
+class LikeSerializer(serializers.ModelSerializer):
+    user = serializers.CharField(read_only=True)
+
+#     class Meta:
+#         model = Likes
+#         fields = ['id', 'user', 'likes', 'placed_at']
+
+#     def create(self, validated_data):
+#         post_id = self.context['post_id']
+#         user_id = self.context['user_id']
+#         verify_like = Likes.objects.filter(user_id=user_id.id)
+
+    # if (verify_like):
+    #     return
+    # else:
+    #     return Likes.objects.create(post_id=post_id, user_id=user_id.id, **validated_data)

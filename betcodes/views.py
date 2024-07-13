@@ -1,5 +1,5 @@
 from rest_framework.viewsets import ModelViewSet
-from rest_framework.permissions import SAFE_METHODS, AllowAny, IsAdminUser, IsAuthenticated
+from rest_framework.permissions import SAFE_METHODS, AllowAny, IsAdminUser, IsAuthenticated, IsAuthenticatedOrReadOnly
 import logging
 
 from betcodes.models import BetCode, FootballClub, BookCodeInfo, Post, Comment
@@ -32,18 +32,17 @@ class BookCodeInfoViewSet(ModelViewSet):
 class PostViewSet(ModelViewSet):
     queryset = Post.objects.prefetch_related('user', 'comments').all()
     serializer_class = PostSerializer
-    # permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticatedOrReadOnly]
 
     def get_serializer_context(self):
         context = super().get_serializer_context()
         context['user_id'] = self.request.user
-        logger.info('self.kwargs2')
         return context
 
 
 class ProfilePostViewSet(ModelViewSet):
     serializer_class = PostSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticatedOrReadOnly]
 
     def get_queryset(self):
         return Post.objects.prefetch_related('user', 'comments').filter(user_id=self.request.user.id)
@@ -57,6 +56,7 @@ class ProfilePostViewSet(ModelViewSet):
 
 class CommentViewSet(ModelViewSet):
     serializer_class = CommentSerializer
+    permission_classes = [IsAuthenticatedOrReadOnly]
 
     def get_queryset(self):
         return Comment.objects.filter(post_id=self.kwargs['post_pk'])

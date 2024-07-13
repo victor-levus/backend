@@ -23,5 +23,5 @@ class BookCodeInfoAdmin(admin.ModelAdmin):
 
 @admin.register(models.Post)
 class PostAdmin(admin.ModelAdmin):
-    list_display = ['id', 'description', 'placed_at', 'user']
+    list_display = ['id', 'description', 'created_at', 'user']
     list_select_related = ['user']
