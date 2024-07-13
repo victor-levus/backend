@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from betcodes.models import BetCode, BookCodeInfo, FootballClub
+from betcodes.models import BetCode, BookCodeInfo, FootballClub, Post, Comment
 
 
 class BetCodeSerializer(serializers.ModelSerializer):
@@ -17,35 +17,35 @@ class BookCodeInfoSerializer(serializers.ModelSerializer):
         fields = ['book_code', 'total_odd', 'ticket_date']
 
 
-# class CommentSerializer(serializers.ModelSerializer):
-#     user = serializers.CharField(read_only=True)
-#     replies = serializers.SerializerMethodField()
+class CommentSerializer(serializers.ModelSerializer):
+    user = serializers.CharField(read_only=True)
+    replies = serializers.SerializerMethodField()
 
-#     class Meta:
-#         model = Comment
-#         fields = ['id', 'post', 'user', 'description', 'parent', 'replies', 'created_at']
+    class Meta:
+        model = Comment
+        fields = ['id', 'post', 'user', 'description', 'parent', 'replies', 'created_at']
 
-#     def create(self, validated_data):
-#         post_id = self.context['post_id']
-#         user_id = self.context['user_id']
-#         return Comment.objects.create(post_id=post_id, user_id=user_id.id, **validated_data)
+    def create(self, validated_data):
+        post_id = self.context['post_id']
+        user_id = self.context['user_id']
+        return Comment.objects.create(post_id=post_id, user_id=user_id.id, **validated_data)
     
-#     def get_replies(self, obj):
-#         if obj.replies.exists():
-#             return CommentSerializer(obj.replies.all(), many=True).data
-#         return None
+    def get_replies(self, obj):
+        if obj.replies.exists():
+            return CommentSerializer(obj.replies.all(), many=True).data
+        return None
 
-# class PostSerializer(serializers.ModelSerializer):
-#     comments = CommentSerializer(many=True, read_only=True)
-#     user = serializers.CharField(read_only=True)
+class PostSerializer(serializers.ModelSerializer):
+    comments = CommentSerializer(many=True, read_only=True)
+    user = serializers.CharField(read_only=True)
 
-#     def create(self, validated_data):
-#         user_id = self.context['user_id']
-#         return Post.objects.create(user_id=user_id.id, **validated_data)
+    def create(self, validated_data):
+        user_id = self.context['user_id']
+        return Post.objects.create(user_id=user_id.id, **validated_data)
 
-#     class Meta:
-#         model = Post
-#         fields = ['id', 'user', 'description', 'placed_at', 'comments']
+    class Meta:
+        model = Post
+        fields = ['id', 'user', 'description', 'placed_at', 'comments']
 
 
 class FootballClubSerializer(serializers.ModelSerializer):

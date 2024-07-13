@@ -1,9 +1,9 @@
 from rest_framework.viewsets import ModelViewSet
-from rest_framework.permissions import SAFE_METHODS, AllowAny, IsAdminUser, IsAuthenticated, IsAuthenticatedOrReadOnly
+from rest_framework.permissions import SAFE_METHODS, AllowAny, IsAdminUser, IsAuthenticatedOrReadOnly
 import logging
 
-from betcodes.models import BetCode, FootballClub, BookCodeInfo
-from betcodes.serializers import BetCodeSerializer, FootballClubSerializer, BookCodeInfoSerializer
+from betcodes.models import BetCode, FootballClub, BookCodeInfo, Post, Comment
+from betcodes.serializers import BetCodeSerializer, FootballClubSerializer, BookCodeInfoSerializer, CommentSerializer, PostSerializer
 
 
 logger = logging.getLogger(__name__)
@@ -29,40 +29,40 @@ class BookCodeInfoViewSet(ModelViewSet):
         return [IsAdminUser()]
 
 
-# class PostViewSet(ModelViewSet):
-#     queryset = Post.objects.prefetch_related('user', 'comments').all()
-#     serializer_class = PostSerializer
-#     permission_classes = [IsAuthenticatedOrReadOnly]
+class PostViewSet(ModelViewSet):
+    queryset = Post.objects.prefetch_related('user', 'comments').all()
+    serializer_class = PostSerializer
+    permission_classes = [IsAuthenticatedOrReadOnly]
 
-#     def get_serializer_context(self):
-#         context = super().get_serializer_context()
-#         context['user_id'] = self.request.user
-#         return context
-
-
-# class ProfilePostViewSet(ModelViewSet):
-#     serializer_class = PostSerializer
-#     permission_classes = [IsAuthenticatedOrReadOnly]
-
-#     def get_queryset(self):
-#         return Post.objects.prefetch_related('user', 'comments').filter(user_id=self.request.user.id)
-
-#     def get_serializer_context(self):
-#         context = super().get_serializer_context()
-#         context['user_id'] = self.request.user
-#         logger.info('self.kwargs2')
-#         return context
+    def get_serializer_context(self):
+        context = super().get_serializer_context()
+        context['user_id'] = self.request.user
+        return context
 
 
-# class CommentViewSet(ModelViewSet):
-#     serializer_class = CommentSerializer
-#     permission_classes = [IsAuthenticatedOrReadOnly]
+class ProfilePostViewSet(ModelViewSet):
+    serializer_class = PostSerializer
+    permission_classes = [IsAuthenticatedOrReadOnly]
 
-#     def get_queryset(self):
-#         return Comment.objects.filter(post_id=self.kwargs['post_pk'])
+    def get_queryset(self):
+        return Post.objects.prefetch_related('user', 'comments').filter(user_id=self.request.user.id)
 
-#     def get_serializer_context(self):
-#         return {'post_id': self.kwargs['post_pk'], 'user_id': self.request.user}
+    def get_serializer_context(self):
+        context = super().get_serializer_context()
+        context['user_id'] = self.request.user
+        logger.info('self.kwargs2')
+        return context
+
+
+class CommentViewSet(ModelViewSet):
+    serializer_class = CommentSerializer
+    permission_classes = [IsAuthenticatedOrReadOnly]
+
+    def get_queryset(self):
+        return Comment.objects.filter(post_id=self.kwargs['post_pk'])
+
+    def get_serializer_context(self):
+        return {'post_id': self.kwargs['post_pk'], 'user_id': self.request.user}
 
 
 # class LikesViewSet(ModelViewSet):
