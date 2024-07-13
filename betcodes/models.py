@@ -38,32 +38,32 @@ class BookCodeInfo(models.Model):
     placed_at = models.DateTimeField(auto_now_add=True)
 
 
-class Post(models.Model):
-    description = models.TextField()
-    user = models.ForeignKey(settings.AUTH_USER_MODEL,
-                             on_delete=models.CASCADE)
-    # image = models.ImageField(null=True, blank=True)
-    created_at = models.DateTimeField(auto_now_add=True)
+# class Post(models.Model):
+#     description = models.TextField()
+#     user = models.ForeignKey(settings.AUTH_USER_MODEL,
+#                              on_delete=models.CASCADE)
+#     # image = models.ImageField(null=True, blank=True)
+#     created_at = models.DateTimeField(auto_now_add=True)
 
 
-class Comment(models.Model):
-    post = models.ForeignKey(
-        Post, on_delete=models.CASCADE, related_name='comments')
-    name = models.CharField(max_length=255, null=True, blank=True)
-    user = models.ForeignKey(settings.AUTH_USER_MODEL,
-                             on_delete=models.CASCADE)
-    description = models.TextField()
-    parent = models.ForeignKey('self', null=True, blank=True, on_delete=models.CASCADE, related_name='replies')
-    created_at = models.DateTimeField(auto_now_add=True)
+# class Comment(models.Model):
+#     post = models.ForeignKey(
+#         Post, on_delete=models.CASCADE, related_name='comments')
+#     name = models.CharField(max_length=255, null=True, blank=True)
+#     user = models.ForeignKey(settings.AUTH_USER_MODEL,
+#                              on_delete=models.CASCADE)
+#     description = models.TextField()
+#     parent = models.ForeignKey('self', null=True, blank=True, on_delete=models.CASCADE, related_name='replies')
+#     created_at = models.DateTimeField(auto_now_add=True)
 
-    def __str__(self):
-        return f'Comment by {self.user} on {self.post}'
+#     def __str__(self):
+#         return f'Comment by {self.user} on {self.post}'
 
 
-class Likes(models.Model):
-    post = models.ForeignKey(
-        Post, on_delete=models.CASCADE, related_name='likes')
-    user = models.ForeignKey(settings.AUTH_USER_MODEL,
-                             on_delete=models.CASCADE)
-    likes = models.BooleanField(default=False)
-    placed_at = models.DateTimeField(auto_now_add=True)
+# class Likes(models.Model):
+#     post = models.ForeignKey(
+#         Post, on_delete=models.CASCADE, related_name='likes')
+#     user = models.ForeignKey(settings.AUTH_USER_MODEL,
+#                              on_delete=models.CASCADE)
+#     likes = models.BooleanField(default=False)
+#     placed_at = models.DateTimeField(auto_now_add=True)

@@ -21,7 +21,7 @@ class BetCodeAdmin(admin.ModelAdmin):
 class BookCodeInfoAdmin(admin.ModelAdmin):
     list_display = ['book_code', 'total_odd', 'ticket_date']
 
-@admin.register(models.Post)
-class PostAdmin(admin.ModelAdmin):
-    list_display = ['id', 'description', 'created_at', 'user']
-    list_select_related = ['user']
+# @admin.register(models.Post)
+# class PostAdmin(admin.ModelAdmin):
+#     list_display = ['id', 'description', 'created_at', 'user']
+#     list_select_related = ['user']
