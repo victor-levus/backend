@@ -18,3 +18,4 @@ ALLOWED_HOSTS = ['backendapiapp-f7e6af207af9.herokuapp.com']
 DATABASES = {
     'default': dj_database_url.config()
 }
+
