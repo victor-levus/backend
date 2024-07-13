@@ -12,8 +12,7 @@ DEBUG = False
 
 ALLOWED_HOSTS = ['backendapiapp-f7e6af207af9.herokuapp.com']
 
-# CSRF_TRUSTED_ORIGINS = ['https://super-mart2.herokuapp.com',
-#                         'https://localhost:3000', 'https://betcodes-fe.vercel.app/']
+CSRF_TRUSTED_ORIGINS = ['https://betsource-a3ca6.firebaseapp.com/', 'https://betsource-a3ca6.web.app/']
 
 DATABASES = {
     'default': dj_database_url.config()
