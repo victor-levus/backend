@@ -12,7 +12,7 @@ DEBUG = False
 
 ALLOWED_HOSTS = ['backendapiapp-f7e6af207af9.herokuapp.com']
 
-CSRF_TRUSTED_ORIGINS = ['https://betsource-a3ca6.firebaseapp.com/', 'https://betsource-a3ca6.web.app/', 'https://backendapiapp-f7e6af207af9.herokuapp.com/']
+CSRF_TRUSTED_ORIGINS = ['https://betsource-a3ca6.firebaseapp.com', 'https://betsource-a3ca6.web.app', 'https://backendapiapp-f7e6af207af9.herokuapp.com']
 
 DATABASES = {
     'default': dj_database_url.config()

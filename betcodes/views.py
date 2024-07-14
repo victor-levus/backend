@@ -32,7 +32,7 @@ class BookCodeInfoViewSet(ModelViewSet):
 class PostViewSet(ModelViewSet):
     queryset = Post.objects.prefetch_related('user', 'comments').all()
     serializer_class = PostSerializer
-    permission_classes = [IsAuthenticatedOrReadOnly]
+    # permission_classes = [IsAuthenticatedOrReadOnly]
 
     def get_serializer_context(self):
         context = super().get_serializer_context()
@@ -42,7 +42,7 @@ class PostViewSet(ModelViewSet):
 
 class ProfilePostViewSet(ModelViewSet):
     serializer_class = PostSerializer
-    permission_classes = [IsAuthenticatedOrReadOnly]
+    # permission_classes = [IsAuthenticatedOrReadOnly]
 
     def get_queryset(self):
         return Post.objects.prefetch_related('user', 'comments').filter(user_id=self.request.user.id)
@@ -56,7 +56,7 @@ class ProfilePostViewSet(ModelViewSet):
 
 class CommentViewSet(ModelViewSet):
     serializer_class = CommentSerializer
-    permission_classes = [IsAuthenticatedOrReadOnly]
+    # permission_classes = [IsAuthenticatedOrReadOnly]
 
     def get_queryset(self):
         return Comment.objects.filter(post_id=self.kwargs['post_pk'])

@@ -45,7 +45,7 @@ class PostSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Post
-        fields = ['id', 'user', 'description', 'placed_at', 'comments']
+        fields = ['id', 'user', 'description', 'created_at', 'comments']
 
 
 class FootballClubSerializer(serializers.ModelSerializer):
