@@ -1,8 +1,4 @@
-from django.contrib import admin, messages
-from django.db.models.aggregates import Count
-from django.db.models.query import QuerySet
-from django.utils.html import format_html, urlencode
-from django.urls import reverse
+from django.contrib import admin
 from . import models
 
 # Register your models here.
@@ -21,7 +17,12 @@ class BetCodeAdmin(admin.ModelAdmin):
 class BookCodeInfoAdmin(admin.ModelAdmin):
     list_display = ['book_code', 'total_odd', 'ticket_date']
 
-# @admin.register(models.Post)
-# class PostAdmin(admin.ModelAdmin):
-#     list_display = ['id', 'description', 'created_at', 'user']
-#     list_select_related = ['user']
+@admin.register(models.Post)
+class PostAdmin(admin.ModelAdmin):
+    list_display = ['id', 'description', 'created_at', 'user']
+    list_select_related = ['user']
+
+@admin.register(models.Comment)
+class CommentAdmin(admin.ModelAdmin):
+    list_display = ['id', 'description', 'created_at', 'user', 'post', 'parent']
+    list_select_related = ['user', 'post']
