@@ -9,7 +9,10 @@ router.register('bets', views.BetCodeViewSet)
 router.register('posts', views.PostViewSet, basename='comments')
 router.register('profileposts', views.ProfilePostViewSet,
                 basename='profile-comments')
-router.register('clubs', views.FootballClubViewSet)
+router.register('teams', views.FootballTeamViewSet)
+router.register('competitions', views.CompetitionViewSet)
+router.register('countries', views.CountryViewSet)
+router.register('continents', views.ContinentViewSet)
 router.register('bookcodeinfo', views.BookCodeInfoViewSet)
 
 posts_router = routers.NestedDefaultRouter(router, 'posts', lookup='post')

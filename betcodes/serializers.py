@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from betcodes.models import BetCode, BookCodeInfo, FootballClub, Post, Comment
+from betcodes.models import BetCode, BookCodeInfo, FootballTeam, Post, Comment, Country, Continent, Competition, Association
 
 
 class BetCodeSerializer(serializers.ModelSerializer):
@@ -8,7 +8,7 @@ class BetCodeSerializer(serializers.ModelSerializer):
     class Meta:
         model = BetCode
         fields = ['id', 'home_team', 'away_team', 'bet', 'odd', 'ht_home_score',
-                  'ht_away_score', 'ft_home_score', 'ft_away_score', 'bet_status', 'match_time']
+                  'ht_away_score', 'ft_home_score', 'ft_away_score', 'bet_status', 'match_time', 'competition']
 
 
 class BookCodeInfoSerializer(serializers.ModelSerializer):
@@ -48,11 +48,30 @@ class PostSerializer(serializers.ModelSerializer):
         fields = ['id', 'user', 'description', 'created_at', 'comments']
 
 
-class FootballClubSerializer(serializers.ModelSerializer):
+class ContinentSerializer(serializers.ModelSerializer):
     class Meta:
-        model = FootballClub
-        fields = ['club_name', 'country',
-                  'continent', 'domestic_league', 'logo']
+        model = Continent
+        fields = ['id','name', 'logo']
+
+class CountrySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Country
+        fields = ['id','name', 'continent', 'logo']
+
+class AssociationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Association
+        fields = ['id','name', 'country', 'logo']
+
+class CompetitionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Competition
+        fields = ['id', 'name', 'association', 'logo']
+
+class FootballTeamSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = FootballTeam
+        fields = ['id', 'team_name', 'country', 'continent', 'domestic_league', 'logo']
 
 
 

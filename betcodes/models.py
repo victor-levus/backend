@@ -4,13 +4,37 @@ from django.db import models
 
 # Create your models here.
 
-
-class FootballClub(models.Model):
-    club_name = models.CharField(max_length=255)
-    country = models.CharField(max_length=255, null=True, blank=True)
-    continent = models.CharField(max_length=255, null=True, blank=True)
-    domestic_league = models.CharField(max_length=255, null=True, blank=True)
+class Continent(models.Model):
+    name = models.CharField(max_length=255)
     logo = models.TextField(null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+class Country(models.Model):
+    name = models.CharField(max_length=255)
+    continent = models.ForeignKey(Continent, models.SET_NULL, blank=True, null=True)
+    logo = models.TextField(null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+class Association(models.Model):
+    name = models.CharField(max_length=255)
+    country = models.ForeignKey(Country, models.SET_NULL, blank=True, null=True)
+    logo = models.TextField(null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+class Competition(models.Model):
+    name = models.CharField(max_length=255)
+    association = models.ForeignKey(Association, models.SET_NULL, blank=True, null=True)
+    logo = models.TextField(null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+
+class FootballTeam(models.Model):
+    team_name = models.CharField(max_length=255)
+    country = models.ForeignKey(Country, models.SET_NULL, blank=True, null=True)
+    continent = models.ForeignKey(Continent, models.SET_NULL, blank=True, null=True)
+    domestic_league = models.ForeignKey(Competition, models.SET_NULL, blank=True, null=True)
+    logo = models.TextField(null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
 
 
 class BetCode(models.Model):
@@ -27,6 +51,7 @@ class BetCode(models.Model):
     remark = models.BooleanField(null=True, blank=True, default=False)
     bet_status = models.CharField(choices=BetStatus, max_length=13, default="IN_PROGRESS")
     match_time = models.DateTimeField()
+    competition = models.CharField(max_length=255, null=True, blank=True)
     createdAt = models.DateTimeField(auto_now_add=True)
     updatedAt = models.DateTimeField(auto_now=True)
 

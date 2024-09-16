@@ -2,8 +2,8 @@ from rest_framework.viewsets import ModelViewSet
 from rest_framework.permissions import SAFE_METHODS, AllowAny, IsAdminUser, IsAuthenticatedOrReadOnly
 import logging
 
-from betcodes.models import BetCode, FootballClub, BookCodeInfo, Post, Comment
-from betcodes.serializers import BetCodeSerializer, FootballClubSerializer, BookCodeInfoSerializer, CommentSerializer, PostSerializer
+from betcodes.models import BetCode, FootballTeam, BookCodeInfo, Post, Comment, Continent, Country, Competition
+from betcodes.serializers import BetCodeSerializer, FootballTeamSerializer, BookCodeInfoSerializer, CommentSerializer, PostSerializer, CompetitionSerializer, CountrySerializer, ContinentSerializer
 
 
 logger = logging.getLogger(__name__)
@@ -75,7 +75,22 @@ class CommentViewSet(ModelViewSet):
 #         return {'post_id': self.kwargs['post_pk'], 'user_id': self.request.user}
 
 
-class FootballClubViewSet(ModelViewSet):
-    queryset = FootballClub.objects.all()
-    serializer_class = FootballClubSerializer
+class ContinentViewSet(ModelViewSet):
+    queryset = Continent.objects.all()
+    serializer_class = ContinentSerializer
+    permission_classes = [IsAdminUser]
+
+class CountryViewSet(ModelViewSet):
+    queryset = Country.objects.all()
+    serializer_class = CountrySerializer
+    permission_classes = [IsAdminUser]
+
+class CompetitionViewSet(ModelViewSet):
+    queryset = Competition.objects.all()
+    serializer_class = CompetitionSerializer
+    permission_classes = [IsAdminUser]
+
+class FootballTeamViewSet(ModelViewSet):
+    queryset = FootballTeam.objects.all()
+    serializer_class = FootballTeamSerializer
     permission_classes = [IsAdminUser]

@@ -65,8 +65,6 @@ CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:3000",
     "https://www.betcodes.space",
     "https://betcodes.space",
-	"https://betsource-a3ca6.firebaseapp.com",
-	"https://betsource-a3ca6.web.app"
 ]
 
 ROOT_URLCONF = 'database.urls'
