@@ -67,6 +67,8 @@ CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:3000",
     "https://www.betcodes.space",
     "https://betcodes.space",
+    "https://www.sleecetechnologies.com.ng",
+    "https://sleecetechnologies.com.ng",
 ]
 
 ROOT_URLCONF = 'database.urls'
