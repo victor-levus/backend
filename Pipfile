@@ -22,6 +22,7 @@ psycopg2 = "*"
 psycopg = "*"
 sqlalchemy = "*"
 pandas = "*"
+django-phonenumber-field = "*"
 
 [dev-packages]
 
