@@ -27,6 +27,7 @@ urlpatterns = [
     path('api/admin/', admin.site.urls),
     path('api/betcodes/', include('betcodes.urls')),
     path('api/estores/', include('estore.urls')),
+    path('api/sleecetech/', include('sleecetech.urls')),
     path('api/auth/', include('djoser.urls')),
     path('api/auth/', include('djoser.urls.jwt')),
     path('__debug__/', include('debug_toolbar.urls')),

@@ -36,9 +36,11 @@ INSTALLED_APPS = [
     'djoser',
     'debug_toolbar',
     'corsheaders',
+    "phonenumber_field",
     'core',
     'betcodes',
-	'estore'
+	'estore',
+    'sleecetech'
 ]
 
 MIDDLEWARE = [
