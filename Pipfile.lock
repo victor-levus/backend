@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "585a524d3e708bd8108d21088f847881b689a2e9987a582c11c53b48dd5ad8b3"
+            "sha256": "b1601dc80d6937868603aad64dcbbea78ddf14e94fb70c03a1f9eae45e134313"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -310,6 +310,13 @@
             "markers": "python_version >= '3.8'",
             "version": "==8.0.0"
         },
+        "django-phonenumbers": {
+            "hashes": [
+                "sha256:cd617e4ee924f6492e0106d738fea619c95f3659e41dbeb97df83c1f3b51f453"
+            ],
+            "index": "pypi",
+            "version": "==1.0.1"
+        },
         "django-templated-mail": {
             "hashes": [
                 "sha256:8db807effebb42a532622e2d142dfd453dafcd0d7794c4c3332acb90656315f9",
@@ -594,6 +601,13 @@
             "markers": "python_version >= '3.9'",
             "version": "==2.2.3"
         },
+        "phonenumbers": {
+            "hashes": [
+                "sha256:53c5e7c6d431cafe4efdd44956078404ae9bc8b0eacc47be3105d3ccc88aaffa",
+                "sha256:5d3c0142ef7055ca5551884352e3b6b93bfe002a0bc95b8eaba39b0e2184541b"
+            ],
+            "version": "==8.13.47"
+        },
         "pillow": {
             "hashes": [
                 "sha256:02a2be69f9c9b8c1e97cf2713e789d4e398c751ecfd9967c18d0ce304efbf885",
@@ -864,7 +878,7 @@
                 "sha256:04e5ca0351e0f3f85c6853954072df659d0d13fac324d0072316b67d7794700d",
                 "sha256:1a7ead55c7e559dd4dee8856e3a88b41225abfe1ce8df57b7c13915fe121ffb8"
             ],
-            "markers": "python_version >= '3.8'",
+            "markers": "python_version < '3.13'",
             "version": "==4.12.2"
         },
         "tzdata": {

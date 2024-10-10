@@ -23,6 +23,7 @@ psycopg = "*"
 sqlalchemy = "*"
 pandas = "*"
 django-phonenumber-field = "*"
+django-phonenumbers = "*"
 
 [dev-packages]
 
